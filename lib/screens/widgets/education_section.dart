@@ -18,10 +18,23 @@ class EducationSection extends StatelessWidget {
                   schoolSummary("University of the Philippines Visayas - Tacloban College", "BS. Computer Science", "2009-2013", "Tacloban, Leyte", AssetImage('assets/images/upvtc.png')),
                   schoolSummary("Philippine Science High School - Easter Visayas Campus", null, "2005-2019", "Palo, Leyte", AssetImage('assets/images/pshs.png')),
                   schoolSummary("Cassidy Elementary School", null, "1999-2005", "Carigara, Leyte", AssetImage('assets/images/cassidy.png')),
-                  Divider(thickness: 2, color: Colors.white70, indent: 50, endIndent: 50, height: 20,),
+                  Divider(thickness: 2, color: Colors.white70, indent: 50, endIndent: 50, height: 50,),
                   Center(child: SectionHeader(sectionName: "Trainings",),),
                 ],
               ),
+            ),
+            SliverGrid.count(
+              crossAxisCount: 3,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+              children: [
+                schoolSummary("University of the Philippines Visayas - Tacloban College", "BS. Computer Science", "2009-2013", "Tacloban, Leyte", AssetImage('assets/images/upvtc.png')),
+                schoolSummary("Philippine Science High School - Easter Visayas Campus", null, "2005-2019", "Palo, Leyte", AssetImage('assets/images/pshs.png')),
+                schoolSummary("University of the Philippines Visayas - Tacloban College", "BS. Computer Science", "2009-2013", "Tacloban, Leyte", AssetImage('assets/images/upvtc.png')),
+                schoolSummary("Philippine Science High School - Easter Visayas Campus", null, "2005-2019", "Palo, Leyte", AssetImage('assets/images/pshs.png')),
+                schoolSummary("University of the Philippines Visayas - Tacloban College", "BS. Computer Science", "2009-2013", "Tacloban, Leyte", AssetImage('assets/images/upvtc.png')),
+                schoolSummary("Philippine Science High School - Easter Visayas Campus", null, "2005-2019", "Palo, Leyte", AssetImage('assets/images/pshs.png')),
+              ],
             ),
           ],
         ),
@@ -31,75 +44,73 @@ class EducationSection extends StatelessWidget {
 }
 
 Widget schoolSummary(String schoolName, String course, String academicYears, String schoolAddress, AssetImage assetImage) {
-  return Container(
-    height: 120,
-    width: 300,
-    padding: EdgeInsets.all(20),
+  return Align(
+    alignment: Alignment.centerLeft,
     child: FittedBox(
       fit: BoxFit.scaleDown,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Container(
-              height: 100,
-              width: 100,
+      child: Container(
+        padding: EdgeInsets.fromLTRB(50, 20, 50, 0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              height: 50,
+              width: 50,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.dstATop),
+                  // colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.dstATop),
                   image: assetImage,
                   fit: BoxFit.cover,
                 ),
               ),
             ),
-          ),
-          SizedBox(width: 20,),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              AutoSizeText(schoolName,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white54,
-                  fontSize: 20,
+            SizedBox(width: 20,),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AutoSizeText(schoolName,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white70,
+                    fontSize: 18,
+                  ),
+                  maxFontSize: 24,
+                  minFontSize: 6,
                 ),
-                maxFontSize: 24,
-                minFontSize: 6,
-              ),
-              course == null ? SizedBox(height: 0,) :
-              AutoSizeText(course,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  // fontSize: 12,
-                  color: Colors.teal,
+                course == null ? SizedBox(height: 0,) :
+                AutoSizeText(course,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                    color: Colors.white54,
+                  ),
+                  maxFontSize: 20,
+                  minFontSize: 6,
                 ),
-                maxFontSize: 20,
-                minFontSize: 6,
-              ),
-              AutoSizeText(academicYears,
-                style: TextStyle(
-                  // fontWeight: FontWeight.bold,
-                  // fontSize: 16,
-                  color: Colors.white54,
+                AutoSizeText(academicYears,
+                  style: TextStyle(
+                    // fontWeight: FontWeight.bold,
+                    // fontSize: 16,
+                    color: Colors.white54,
+                  ),
+                  maxFontSize: 12,
+                  minFontSize: 6,
                 ),
-                maxFontSize: 12,
-                minFontSize: 6,
-              ),
-              AutoSizeText(schoolAddress,
-                style: TextStyle(
-                  fontStyle: FontStyle.italic,
-                  // fontSize: 16,
-                  color: Colors.white54,
+                AutoSizeText(schoolAddress,
+                  style: TextStyle(
+                    fontStyle: FontStyle.italic,
+                    // fontSize: 16,
+                    color: Colors.white54,
+                  ),
+                  maxFontSize: 12,
+                  minFontSize: 6,
                 ),
-                maxFontSize: 12,
-                minFontSize: 6,
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     ),
   );
