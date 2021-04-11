@@ -1,16 +1,19 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:reeno_website/screens/widgets/achievement_section.dart';
 import 'package:reeno_website/screens/widgets/education_section.dart';
 import 'package:reeno_website/screens/widgets/general_section.dart';
 import 'package:reeno_website/screens/widgets/project_section.dart';
 import 'package:reeno_website/screens/widgets/work_section.dart';
+import 'dart:js' as js;
 
 class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red,
+      backgroundColor: Colors.transparent,
       body: ResumeLayout(),
     );
   }
@@ -22,7 +25,7 @@ class ResumeLayout extends StatefulWidget {
 }
 
 class _ResumeLayoutState extends State<ResumeLayout> {
-  int resumeSection = 0;
+  int resumeSection = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +33,12 @@ class _ResumeLayoutState extends State<ResumeLayout> {
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width / 10, 10, MediaQuery.of(context).size.width / 10, 10),
-      color: Colors.black,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/blackdrop03.jpg'),
+          fit: BoxFit.fill,
+        ),
+      ),
       child: Center(
         child: Row(
           children: [
@@ -57,11 +65,11 @@ class _ResumeLayoutState extends State<ResumeLayout> {
                       ),
                       Column(
                         children: [
-                          FittedBox(fit: BoxFit.scaleDown, child: IconButton(color: resumeSection == 0 ? Colors.tealAccent : Colors.white10, onPressed: () => setState( () {resumeSection = 0;}), icon: Icon(Icons.person)),),
-                          FittedBox(fit: BoxFit.scaleDown, child: IconButton(color: resumeSection == 1 ? Colors.tealAccent : Colors.white10, onPressed: () => setState( () {resumeSection = 1;}), icon: Icon(Icons.school)),),
-                          FittedBox(fit: BoxFit.scaleDown, child: IconButton(color: resumeSection == 2 ? Colors.tealAccent : Colors.white10, onPressed: () => setState( () {resumeSection = 2;}), icon: Icon(Icons.work)),),
-                          FittedBox(fit: BoxFit.scaleDown, child: IconButton(color: resumeSection == 3 ? Colors.tealAccent : Colors.white10, onPressed: () => setState( () {resumeSection = 3;}), icon: Icon(Icons.attractions)),),
-                          FittedBox(fit: BoxFit.scaleDown, child: IconButton(color: resumeSection == 4 ? Colors.tealAccent : Colors.white10, onPressed: () => setState( () {resumeSection = 4;}), icon: Icon(Icons.assignment)),),
+                          FittedBox(fit: BoxFit.scaleDown, child: IconButton(color: resumeSection == 0 ? Colors.tealAccent : Colors.white10, onPressed: () => setState( () {resumeSection = 0;}), icon: Icon(Ionicons.md_person)),),
+                          FittedBox(fit: BoxFit.scaleDown, child: IconButton(color: resumeSection == 1 ? Colors.tealAccent : Colors.white10, onPressed: () => setState( () {resumeSection = 1;}), icon: Icon(Ionicons.md_school)),),
+                          FittedBox(fit: BoxFit.scaleDown, child: IconButton(color: resumeSection == 2 ? Colors.tealAccent : Colors.white10, onPressed: () => setState( () {resumeSection = 2;}), icon: Icon(MaterialIcons.work)),),
+                          FittedBox(fit: BoxFit.scaleDown, child: IconButton(color: resumeSection == 3 ? Colors.tealAccent : Colors.white10, onPressed: () => setState( () {resumeSection = 3;}), icon: Icon(Ionicons.md_medal)),),
+                          FittedBox(fit: BoxFit.scaleDown, child: IconButton(color: resumeSection == 4 ? Colors.tealAccent : Colors.white10, onPressed: () => setState( () {resumeSection = 4;}), icon: Icon(MaterialCommunityIcons.folder_multiple)),),
                         ],
                       ),
                       FittedBox(fit: BoxFit.scaleDown, child: IconButton(color: Colors.white70, onPressed: () => setState( () {resumeSection = 0;}), icon: Icon(Icons.cloud_download)),),
@@ -72,29 +80,53 @@ class _ResumeLayoutState extends State<ResumeLayout> {
               flex: 1,
             ),
             Expanded(
-              child: Opacity(
-                opacity: 0.5,
-                child: Container(
-                  padding: EdgeInsets.all(50),
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/me_gray.png'),
-                      fit: BoxFit.cover,
-                    ),
+              child: Container(
+                padding: EdgeInsets.all(50),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.dstATop),
+                    image: AssetImage('assets/images/coldreeno.png'),
+                    fit: BoxFit.cover,
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Row(
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    AutoSizeText("Reeno Lesigues",
+                      style: TextStyle(
+                        fontSize: 50,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                      maxLines: 1,
+                      minFontSize: 5,
+                      maxFontSize: 50,
+                    ),
+                    Divider(height: 10,),
+                    AutoSizeText("Developer | Architect",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.teal[400],
+                      ),
+                      maxLines: 1,
+                      minFontSize: 5,
+                    ),
+                    Divider(height: 10,),
+                    FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          FlutterLogo(),
-                          FlutterLogo(),
-                          FlutterLogo(),
+                          IconButton(onPressed: () => js.context.callMethod('open', ['https://www.linkedin.com/in/reenolesigues/']), icon: Icon(FontAwesome.linkedin_square, color: Colors.white54)),
+                          IconButton(onPressed: () => js.context.callMethod('open', ['https://www.github.com/reenolesigues']), icon: Icon(FontAwesome.github_square, color: Colors.white54)),
+                          IconButton(onPressed: () => js.context.callMethod('open', ['https://www.facebook.com/reenoforever']), icon: Icon(FontAwesome.facebook_square, color: Colors.white54,)),
+                          IconButton(onPressed: () => js.context.callMethod('open', ['https://www.twitter.com/reenoforever']), icon: Icon(FontAwesome.twitter_square, color: Colors.white54)),
                         ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
               flex: 8,

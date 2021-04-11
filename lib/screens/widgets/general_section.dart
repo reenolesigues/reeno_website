@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:reeno_website/utils/section_header.dart';
 
 class GeneralSection extends StatelessWidget {
@@ -28,15 +30,15 @@ class GeneralSection extends StatelessWidget {
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
                 children: [
-                  skillsetRenderer(context, Icons.ac_unit, "Solution Architecture", "Design software and infrastructures to support business growth and transformation, focusing on system integration, scalability, security and performance"),
-                  skillsetRenderer(context, Icons.ac_unit, "Server-side Development", "Develop distributed backend services supporting critical business processes"),
-                  skillsetRenderer(context, Icons.ac_unit, "Client-side Development", "Web and mobile development which interacts with customers and end-users"),
-                  skillsetRenderer(context, Icons.ac_unit, "Vulnerability Assessment", "Identify security vulnerabilities based on OWASP application security verification standard"),
-                  skillsetRenderer(context, Icons.ac_unit, "Research & Development", "Basically anything you can think of - i.e. VOIP, Service Mesh, AI, Cross-platform development tools"),
-                  skillsetRenderer(context, Icons.ac_unit, "Project Management", "Only if necessary for project delivery (not everything we know how to do, we love to do)"),
-                  skillsetRenderer(context, Icons.ac_unit, "Linux Administration", "Managing linux servers, setting up dependencies for various applications to deploy"),
-                  skillsetRenderer(context, Icons.ac_unit, "DevOps", "Automating deployment pipelines using a variety of devops tools"),
-                  skillsetRenderer(context, Icons.ac_unit, "Application Testing", "Manual testing, unit testing, SIT/SAT, Load/stress testing, you name it, I hate it"),
+                  skillSetRenderer(context, MaterialCommunityIcons.brain, "Solution Architecture", "Design software and infrastructures to support business growth and transformation, focusing on system integration, scalability, security and performance"),
+                  skillSetRenderer(context, Feather.server, "Server-side Development", "Develop distributed backend services supporting critical business processes"),
+                  skillSetRenderer(context, FontAwesome.laptop, "Client-side Development", "Web and mobile development which interacts with customers and end-users"),
+                  skillSetRenderer(context, MaterialIcons.security, "Vulnerability Assessment", "Identify security vulnerabilities based on OWASP application security verification standard"),
+                  skillSetRenderer(context, Foundation.magnifying_glass, "Research & Development", "Basically anything you can think of - i.e. VOIP, Service Mesh, AI, Cross-platform development tools"),
+                  skillSetRenderer(context, Foundation.projection_screen, "Project Management", "Only if necessary for project delivery (not everything we know how to do, we love to do)"),
+                  skillSetRenderer(context, FontAwesome.linux, "Linux Administration", "Managing linux servers, setting up dependencies for various applications to deploy"),
+                  skillSetRenderer(context, Feather.git_pull_request, "DevOps", "Automating deployment pipelines using a variety of devops tools"),
+                  skillSetRenderer(context, MaterialCommunityIcons.ab_testing, "Application Testing", "Manual testing, unit testing, SIT/SAT, Load/stress testing, you name it, I hate it"),
                 ],
               ),
             ],
@@ -60,24 +62,35 @@ Widget aboutMe(BuildContext context) {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("27 years old", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.teal, fontStyle: FontStyle.italic),),
+              AutoSizeText("27 years old",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.teal, fontStyle: FontStyle.italic),
+                maxLines: 1,
+              ),
               Text("    /   ", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20, fontStyle: FontStyle.italic), ),
-              Text("Philippines", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.teal, fontStyle: FontStyle.italic),),
+              AutoSizeText("Philippines",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.teal, fontStyle: FontStyle.italic),
+                maxLines: 1,
+              ),
+              // Text("Philippines", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.teal, fontStyle: FontStyle.italic),),
               Text("    /   ", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20, fontStyle: FontStyle.italic),),
-              Text("Employed", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.teal, fontStyle: FontStyle.italic),),
+              AutoSizeText("Employed",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.teal, fontStyle: FontStyle.italic),
+                maxLines: 1,
+              ),
+              // Text("Employed", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.teal, fontStyle: FontStyle.italic),),
             ],
           ),
           SizedBox(height: 20,),
-          Flexible(
-            fit: FlexFit.loose,
-            child: Text("Software-Solutions architect with over 3 years of experience in enterprise architecture and over 5 years of development experience primarily on distributed systems and microservices with some mobile, python and web development experiences on the side. Knowledgeable in handling all aspect of product delivery from requirement analysis, development, testing, dev-ops, vulnerability assessment, operations and support. Experienced building entire IT ecosystems on various infrastructures. ", style: TextStyle(color: Colors.white, fontSize: 12)),
+          AutoSizeText("Software-Solutions architect with over 3 years of experience in enterprise architecture and over 5 years of development experience primarily on distributed systems and microservices with some mobile, python and web development experiences on the side. Knowledgeable in handling all aspect of product delivery from requirement analysis, development, testing, dev-ops, vulnerability assessment, operations and support. Experienced building entire IT ecosystems on various infrastructures. ",
+            maxLines: 4,
+            style: TextStyle(color: Colors.white, fontSize: 12),
           ),
         ],
       ),
   );
 }
 
-Widget skillsetRenderer(BuildContext context, IconData icon, String skill, String summary) {
+Widget skillSetRenderer(BuildContext context, IconData icon, String skill, String summary) {
   return Container(
     decoration: BoxDecoration(
       border: Border.all(
@@ -90,11 +103,20 @@ Widget skillsetRenderer(BuildContext context, IconData icon, String skill, Strin
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        FittedBox(fit: BoxFit.fitWidth, child: Icon(icon, color: Colors.white24, size: 40,),),
+        FittedBox(fit: BoxFit.scaleDown, child: Icon(icon, color: Colors.white24, size: 40,),),
         Flexible(child: SizedBox(height: 10,),),
-        FittedBox(fit: BoxFit.fitWidth, child: Text(skill, style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),),),
+        AutoSizeText(skill,
+          style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+        // FittedBox(fit: BoxFit.fitWidth, child: Text(skill, style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),),),
         Flexible(child: SizedBox(height: 10,),),
-        Container(child: Text(summary, style: TextStyle(fontSize: 12, color: Colors.white54,), overflow: TextOverflow.ellipsis, maxLines: 7,),),
+        AutoSizeText(summary,
+          style: TextStyle(fontSize: 12, color: Colors.white54,),
+          maxLines: 5,
+          overflow: TextOverflow.ellipsis,
+        ),
       ],
     ),
   );
