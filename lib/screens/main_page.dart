@@ -25,7 +25,7 @@ class ResumeLayout extends StatefulWidget {
 }
 
 class _ResumeLayoutState extends State<ResumeLayout> {
-  int resumeSection = 1;
+  int resumeSection = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -119,10 +119,10 @@ class _ResumeLayoutState extends State<ResumeLayout> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          IconButton(onPressed: () => js.context.callMethod('open', ['https://www.linkedin.com/in/reenolesigues/']), icon: Icon(FontAwesome.linkedin_square, color: Colors.white54)),
-                          IconButton(onPressed: () => js.context.callMethod('open', ['https://www.github.com/reenolesigues']), icon: Icon(FontAwesome.github_square, color: Colors.white54)),
-                          IconButton(onPressed: () => js.context.callMethod('open', ['https://www.facebook.com/reenoforever']), icon: Icon(FontAwesome.facebook_square, color: Colors.white54,)),
-                          IconButton(onPressed: () => js.context.callMethod('open', ['https://www.twitter.com/reenoforever']), icon: Icon(FontAwesome.twitter_square, color: Colors.white54)),
+                          IconButton(onPressed: () => js.context.callMethod('open', ['https://www.linkedin.com/in/reenolesigues/']), icon: Icon(FontAwesome.linkedin_square, color: Colors.white)),
+                          IconButton(onPressed: () => js.context.callMethod('open', ['https://www.github.com/reenolesigues']), icon: Icon(FontAwesome.github_square, color: Colors.white)),
+                          IconButton(onPressed: () => js.context.callMethod('open', ['https://www.facebook.com/reenoforever']), icon: Icon(FontAwesome.facebook_square, color: Colors.white,)),
+                          IconButton(onPressed: () => js.context.callMethod('open', ['https://www.twitter.com/reenoforever']), icon: Icon(FontAwesome.twitter_square, color: Colors.white)),
                         ],
                       ),
                     ),

@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:reeno_website/utils/section_header.dart';
 
 class EducationSection extends StatelessWidget {
@@ -20,6 +21,7 @@ class EducationSection extends StatelessWidget {
                   schoolSummary("Cassidy Elementary School", null, "1999-2005", "Carigara, Leyte", AssetImage('assets/images/cassidy.png')),
                   Divider(thickness: 2, color: Colors.white70, indent: 50, endIndent: 50, height: 50,),
                   Center(child: SectionHeader(sectionName: "Trainings",),),
+                  SizedBox(height: 20,),
                 ],
               ),
             ),
@@ -28,12 +30,12 @@ class EducationSection extends StatelessWidget {
               mainAxisSpacing: 10,
               crossAxisSpacing: 10,
               children: [
-                schoolSummary("University of the Philippines Visayas - Tacloban College", "BS. Computer Science", "2009-2013", "Tacloban, Leyte", AssetImage('assets/images/upvtc.png')),
-                schoolSummary("Philippine Science High School - Easter Visayas Campus", null, "2005-2019", "Palo, Leyte", AssetImage('assets/images/pshs.png')),
-                schoolSummary("University of the Philippines Visayas - Tacloban College", "BS. Computer Science", "2009-2013", "Tacloban, Leyte", AssetImage('assets/images/upvtc.png')),
-                schoolSummary("Philippine Science High School - Easter Visayas Campus", null, "2005-2019", "Palo, Leyte", AssetImage('assets/images/pshs.png')),
-                schoolSummary("University of the Philippines Visayas - Tacloban College", "BS. Computer Science", "2009-2013", "Tacloban, Leyte", AssetImage('assets/images/upvtc.png')),
-                schoolSummary("Philippine Science High School - Easter Visayas Campus", null, "2005-2019", "Palo, Leyte", AssetImage('assets/images/pshs.png')),
+                trainingSummary("Azure Fundamentals", "Introductory course on Azure cloud platform", "February 2021", "Microsoft CZ", MaterialCommunityIcons.microsoft),
+                trainingSummary("AWS Technical Essentials", "In depth training on AWS services and offerings", "February 2020", "BGC, Taguig", MaterialCommunityIcons.aws),
+                trainingSummary("AWS Business Essentials", "Benefits in using cloud", "February 2020", "BGC, Taguig", MaterialCommunityIcons.aws),
+                trainingSummary("7 Habits of Highly Effective People", "Approach to being effective in attaining goals by aligning oneself to what he calls 'true north' principles based on a character ethic", "October 2019", "BGC, Taguig", MaterialIcons.nature_people),
+                trainingSummary("OpenApi", "OpenAPI (enterprise API hub) development training", "April 2019", "Prague, Czech Republic", FontAwesome5Brands.connectdevelop),
+                trainingSummary("Advance Linux", "Basic to advance linux operating system management training", "February 2015", "BGC, Taguig", FontAwesome.linux),
               ],
             ),
           ],
@@ -112,6 +114,51 @@ Widget schoolSummary(String schoolName, String course, String academicYears, Str
           ],
         ),
       ),
+    ),
+  );
+}
+
+Widget trainingSummary(String training, String overview, String date, String location, IconData icon) {
+  return Container(
+    decoration: BoxDecoration(
+      border: Border.all(
+        color: Colors.white10,
+      ),
+      borderRadius: BorderRadius.all(Radius.circular(10)),
+    ),
+    padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        FittedBox(fit: BoxFit.scaleDown, child: Icon(icon, color: Colors.white24, size: 40,),),
+        Flexible(child: SizedBox(height: 10,),),
+        AutoSizeText(training,
+          style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+        // FittedBox(fit: BoxFit.fitWidth, child: Text(skill, style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),),),
+        Flexible(child: SizedBox(height: 10,),),
+        AutoSizeText(date,
+          style: TextStyle(fontSize: 12, color: Colors.white54,),
+          maxLines: 5,
+          overflow: TextOverflow.ellipsis,
+        ),
+        Flexible(child: SizedBox(height: 10,),),
+        AutoSizeText(location,
+          style: TextStyle(fontSize: 12, color: Colors.white54, fontStyle: FontStyle.italic),
+          maxLines: 5,
+          overflow: TextOverflow.ellipsis,
+        ),
+        Flexible(child: SizedBox(height: 10,),),
+        AutoSizeText(overview,
+          style: TextStyle(fontSize: 12, color: Colors.white54,),
+          maxLines: 5,
+          overflow: TextOverflow.ellipsis,
+        ),
+
+      ],
     ),
   );
 }
