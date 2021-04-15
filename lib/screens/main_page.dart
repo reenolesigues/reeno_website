@@ -2,12 +2,15 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:pdf/pdf.dart';
 import 'package:reeno_website/screens/widgets/achievement_section.dart';
 import 'package:reeno_website/screens/widgets/education_section.dart';
 import 'package:reeno_website/screens/widgets/general_section.dart';
 import 'package:reeno_website/screens/widgets/project_section.dart';
 import 'package:reeno_website/screens/widgets/work_section.dart';
 import 'dart:js' as js;
+import 'package:pdf/widgets.dart' as pw;
+import 'package:universal_html/html.dart' as html;
 
 class MainPage extends StatelessWidget {
   @override
@@ -29,6 +32,17 @@ class _ResumeLayoutState extends State<ResumeLayout> {
 
   @override
   Widget build(BuildContext context) {
+    final pdf = pw.Document();
+    pdf.addPage(pw.Page(
+        pageFormat: PdfPageFormat.a4,
+        build: (pw.Context context) {
+          return pw.Center(
+            child: pw.Text("Hello World"),
+          );
+        }));
+    final bytes = pdf.save();
+    final blob = html.Blob([bytes], 'application/pdf');
+
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
@@ -72,7 +86,25 @@ class _ResumeLayoutState extends State<ResumeLayout> {
                           FittedBox(fit: BoxFit.scaleDown, child: IconButton(color: resumeSection == 4 ? Colors.tealAccent : Colors.white10, onPressed: () => setState( () {resumeSection = 4;}), icon: Icon(MaterialCommunityIcons.folder_multiple)),),
                         ],
                       ),
-                      FittedBox(fit: BoxFit.scaleDown, child: IconButton(color: Colors.white70, onPressed: () => setState( () {resumeSection = 0;}), icon: Icon(Icons.cloud_download)),),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: IconButton(
+                          color: Colors.white70,
+                          icon: Icon(Icons.cloud_download),
+                          onPressed: () {
+                            final url = html.Url.createObjectUrlFromBlob(blob);
+                            final anchor =
+                            html.document.createElement('a') as html.AnchorElement
+                              ..href = url
+                              ..style.display = 'none'
+                              ..download = 'some_name.pdf';
+                            html.document.body.children.add(anchor);
+                            anchor.click();
+                            html.document.body.children.remove(anchor);
+                            html.Url.revokeObjectUrl(url);
+                          },
+                        ),
+                      ),
                     ],
                   ),
                 ),
