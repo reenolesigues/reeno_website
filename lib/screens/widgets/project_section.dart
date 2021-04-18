@@ -50,13 +50,31 @@ class CollapsingList extends StatelessWidget {
         minHeight: 60.0,
         maxHeight: 100.0,
         child: Container(
-            color: Color(0xFF151026),
-            child: Center(
-              child: FittedBox(
-                fit: BoxFit.fitWidth,
-                child: Text(headerText, style: TextStyle(fontSize: 20, color: Colors.white54)),
-              ),
-            )
+          // color: Color(0xFF151026),
+          child: Center(
+            child: FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text(headerText, style: TextStyle(fontSize: 20, color: Colors.white54)),
+            ),
+          ),
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                stops: [
+                  0.1,
+                  0.4,
+                  0.6,
+                  0.9,
+                ],
+                colors: [
+                  Color(0xFF151026),
+                  Colors.teal,
+                  Colors.teal,
+                  Color(0xFF151026),
+                ],
+              )
+          ),
         ),
       ),
     );
@@ -75,9 +93,9 @@ class CollapsingList extends StatelessWidget {
             SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  Container(color: Colors.cyan, height: 150.0),
-                  Container(color: Colors.indigo, height: 150.0),
-                  Container(color: Colors.blue, height: 150.0),
+                  projectRenderer(AssetImage('assets/images/wryvault.png'),
+                      "Reeno Website", "10/2020",
+                      "My personal website"),
                 ],
               ),
             ),
@@ -89,32 +107,24 @@ class CollapsingList extends StatelessWidget {
                   projectRenderer(AssetImage('assets/images/wryvault.png'),
                       "Wry Vault", "10/2020",
                       "Password manager with no ads and fully works offline with online backup online capability (sort of)"),
-                  projectRenderer(AssetImage('assets/images/wryvault.png'),
-                      "Wry Vault", "10/2020",
-                      "Password manager with no ads and fully works offline with online backup online capability (sort of)"),
-                  projectRenderer(AssetImage('assets/images/wryvault.png'),
-                      "Wry Vault", "10/2020",
-                      "Password manager with no ads and fully works offline with online backup online capability (sort of)"),
+                  projectRenderer(AssetImage('assets/images/mycnvs.png'),
+                      "MyCNVS", "09/2020",
+                      "QR based distribution of high school modules for CNVS"),
                 ],
               ),
             ),
             makeHeader('Microservices'),
-            SliverToBoxAdapter(
-              child: Container(
-                height: 1000,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return Row(
-                      children: [
-                        Container(color: Colors.red, height: 1000.0, width: 300.0,),
-                        Container(color: Colors.black38, height: 1000.0, width: 300.0,),
-                        Container(color: Colors.green, height: 1000.0, width: 300.0,),
-                      ],
-                    );
-                  },
-                ),
+            SliverFixedExtentList(
+              itemExtent: 150.0,
+              delegate: SliverChildListDelegate(
+                [
+                  projectRenderer(AssetImage('assets/images/wryvault.png'),
+                      "Wry Vault", "10/2020",
+                      "Password manager with no ads and fully works offline with online backup online capability (sort of)"),
+                  projectRenderer(AssetImage('assets/images/mycnvs.png'),
+                      "MyCNVS", "09/2020",
+                      "QR based distribution of high school modules for CNVS"),
+                ],
               ),
             ),
             /*Last Row for LinkedIn/FB connect*/
@@ -131,7 +141,7 @@ projectRenderer(AssetImage('assets/images/wryvault.png'),
  */
 Widget projectRenderer(AssetImage assetImage, String project, String dateRange, String overview) {
   return Container(
-    height: 200,
+    height: 150,
     decoration: BoxDecoration(
       border: Border.all(
         color: Colors.white10,
@@ -140,7 +150,7 @@ Widget projectRenderer(AssetImage assetImage, String project, String dateRange, 
     ),
     padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
     child: Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         FittedBox(

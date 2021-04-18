@@ -28,7 +28,7 @@ class ResumeLayout extends StatefulWidget {
 }
 
 class _ResumeLayoutState extends State<ResumeLayout> {
-  int resumeSection = 3;
+  int resumeSection = 4;
 
   @override
   Widget build(BuildContext context) {
