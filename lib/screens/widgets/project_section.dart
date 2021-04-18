@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'dart:math' as math;
+import 'dart:js' as js;
 
 import 'package:reeno_website/utils/section_icon_header.dart';
 
@@ -95,35 +96,38 @@ class CollapsingList extends StatelessWidget {
                 [
                   projectRenderer(AssetImage('assets/images/wryvault.png'),
                       "Reeno Website", "10/2020",
-                      "My personal website"),
+                      "My personal website",
+                      "https://reenolesigues.github.io/"),
                 ],
               ),
             ),
-            makeHeader('Mobile Application'),
+            makeHeader('Mobile Applications'),
             SliverFixedExtentList(
               itemExtent: 150.0,
               delegate: SliverChildListDelegate(
                 [
                   projectRenderer(AssetImage('assets/images/wryvault.png'),
-                      "Wry Vault", "10/2020",
-                      "Password manager with no ads and fully works offline with online backup online capability (sort of)"),
+                    "Wry Vault", "10/2020",
+                    "Password manager with no ads and fully works offline with online backup online capability (sort of)",
+                    "https://play.google.com/store/apps/details?id=org.wry.wry_vault",
+                  ),
                   projectRenderer(AssetImage('assets/images/mycnvs.png'),
-                      "MyCNVS", "09/2020",
-                      "QR based distribution of high school modules for CNVS"),
+                    "MyCNVS", "09/2020",
+                    "QR based distribution of high school modules of Carigara National Vocational School",
+                    "https://play.google.com/store/apps/details?id=org.cnvs.pruneproject"
+                  ),
                 ],
               ),
             ),
-            makeHeader('Microservices'),
-            SliverFixedExtentList(
-              itemExtent: 150.0,
+            makeHeader('Desktop Applications'),
+            SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  projectRenderer(AssetImage('assets/images/wryvault.png'),
-                      "Wry Vault", "10/2020",
-                      "Password manager with no ads and fully works offline with online backup online capability (sort of)"),
-                  projectRenderer(AssetImage('assets/images/mycnvs.png'),
-                      "MyCNVS", "09/2020",
-                      "QR based distribution of high school modules for CNVS"),
+                  projectRenderer(AssetImage('assets/images/magdendro.png'),
+                    "MAGDendro", "03/2013",
+                    "Digital Tree Ring Dating using various Image Processing and Mathematical Morphology Algorithms",
+                    "https://github.com/reenolesigues/MAGDendro"
+                  ),
                 ],
               ),
             ),
@@ -139,7 +143,7 @@ projectRenderer(AssetImage('assets/images/wryvault.png'),
                             "Wry Vault", "10/2020",
                             "Password manager with no ads and fully works offline with online backup online capability (sort of)"),
  */
-Widget projectRenderer(AssetImage assetImage, String project, String dateRange, String overview) {
+Widget projectRenderer(AssetImage assetImage, String project, String dateRange, String overview, String link) {
   return Container(
     height: 150,
     decoration: BoxDecoration(
@@ -195,6 +199,26 @@ Widget projectRenderer(AssetImage assetImage, String project, String dateRange, 
           style: TextStyle(fontSize: 12, color: Colors.white54,),
           maxLines: 5,
           overflow: TextOverflow.ellipsis,
+        ),
+        Row(
+          children: [
+            AutoSizeText("Link :",
+              style: TextStyle( color: Colors.white54, fontWeight: FontWeight.bold),
+              overflow: TextOverflow.ellipsis,
+              maxFontSize: 14,
+              minFontSize: 6,
+            ),
+            SizedBox(width: 10,),
+            TextButton(
+              onPressed: () => js.context.callMethod('open', [link]),
+              child: AutoSizeText(link,
+                style: TextStyle( color: Colors.blue,),
+                overflow: TextOverflow.ellipsis,
+                maxFontSize: 14,
+                minFontSize: 6,
+              ),
+            ),
+          ],
         ),
       ],
     ),

@@ -10,6 +10,7 @@ import 'package:reeno_website/screens/widgets/project_section.dart';
 import 'package:reeno_website/screens/widgets/work_section.dart';
 import 'dart:js' as js;
 import 'package:pdf/widgets.dart' as pw;
+import 'package:reeno_website/widgets/custom_alert.dart';
 import 'package:universal_html/html.dart' as html;
 
 class MainPage extends StatelessWidget {
@@ -28,7 +29,7 @@ class ResumeLayout extends StatefulWidget {
 }
 
 class _ResumeLayoutState extends State<ResumeLayout> {
-  int resumeSection = 4;
+  int resumeSection = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -92,16 +93,17 @@ class _ResumeLayoutState extends State<ResumeLayout> {
                           color: Colors.white70,
                           icon: Icon(Icons.cloud_download),
                           onPressed: () {
-                            final url = html.Url.createObjectUrlFromBlob(blob);
-                            final anchor =
-                            html.document.createElement('a') as html.AnchorElement
-                              ..href = url
-                              ..style.display = 'none'
-                              ..download = 'some_name.pdf';
-                            html.document.body.children.add(anchor);
-                            anchor.click();
-                            html.document.body.children.remove(anchor);
-                            html.Url.revokeObjectUrl(url);
+                            noteAlertD(context, "Function disabled at the moment.");
+                            // final url = html.Url.createObjectUrlFromBlob(blob);
+                            // final anchor =
+                            // html.document.createElement('a') as html.AnchorElement
+                            //   ..href = url
+                            //   ..style.display = 'none'
+                            //   ..download = 'some_name.pdf';
+                            // html.document.body.children.add(anchor);
+                            // anchor.click();
+                            // html.document.body.children.remove(anchor);
+                            // html.Url.revokeObjectUrl(url);
                           },
                         ),
                       ),

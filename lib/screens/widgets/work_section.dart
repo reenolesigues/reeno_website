@@ -71,7 +71,7 @@ class WorkSection extends StatelessWidget {
 Widget jobRenderer(AssetImage assetImage, String company, String address, String dateRange, String position, List<String> roles) {
   return Container(
     height: 200,
-    width: 400,
+    width: 500,
     decoration: BoxDecoration(
       border: Border.all(
         color: Colors.white10,

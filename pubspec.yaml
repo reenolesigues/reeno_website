@@ -32,6 +32,7 @@ dependencies:
   flutter_icons: ^1.1.0 #visit https://oblador.github.io/react-native-vector-icons/ for icon viewing
   pdf: ^3.2.0
   universal_html: ^2.0.8
+  rflutter_alert: ^2.0.2
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +71,7 @@ flutter:
     - assets/images/blackdrop03.jpg
     - assets/images/wryvault.png
     - assets/images/mycnvs.png
+    - assets/images/magdendro.png
     - assets/pdfs/resume.pdf
 
   # An image asset can refer to one or more resolution-specific "variants", see
