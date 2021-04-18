@@ -11,6 +11,8 @@ class ReenoApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: primaryColor,
         backgroundColor: primaryColor,
+        buttonColor: primaryColor,
+        accentColor: Colors.teal,  //used by rflutter_alert button
       ),
       initialRoute: '/',
       routes: {

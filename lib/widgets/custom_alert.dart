@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-void noteAlertD(BuildContext context, String msg) {
+void noteAlert(BuildContext context, String msg) {
   Alert(
       title: "Note",
       context: context,

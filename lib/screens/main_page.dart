@@ -73,7 +73,7 @@ class _ResumeLayoutState extends State<ResumeLayout> {
                           color: Colors.teal,
                           child: IconButton(
                             color: Colors.white70,
-                            onPressed: () => setState( () {resumeSection = 0;}),
+                            onPressed: () => noteAlert(context, "Feature disabled at the moment."),
                             icon: Icon(Icons.menu),
                           ),
                         ),
@@ -93,7 +93,7 @@ class _ResumeLayoutState extends State<ResumeLayout> {
                           color: Colors.white70,
                           icon: Icon(Icons.cloud_download),
                           onPressed: () {
-                            noteAlertD(context, "Function disabled at the moment.");
+                            noteAlert(context, "Feature disabled at the moment.");
                             // final url = html.Url.createObjectUrlFromBlob(blob);
                             // final anchor =
                             // html.document.createElement('a') as html.AnchorElement
